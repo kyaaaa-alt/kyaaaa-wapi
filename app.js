@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 const client = new Client({
     authStrategy: new LocalAuth(),
     webVersionCache: {
-        remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2410.1.html',
+        remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.51.html',
         type: 'remote'
     },
     // puppeteer: {
@@ -40,12 +40,6 @@ client.on('qr', (qr) => {
 
 client.on('ready', () => {
     console.log('Client is ready !')
-    //console log all groups ids
-    client.getChats().then(chats => {
-        const groups = chats.filter(chat => chat.isGroup);
-        console.log('Groups that the bot is in: ');
-        groups.forEach(group => console.log("- " + group.name + ": " + group.id._serialized));
-    })
     qrstring.push('connected')
     new DiscordWebhook('Server Status', 'Whatsapp Connected :green_circle:', 'API Ready to use!').send()
 });
